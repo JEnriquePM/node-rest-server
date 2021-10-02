@@ -55,11 +55,9 @@ const userPost = async (req, res) => {
 const userDelete = async (req, res = response) => {
     const {id} = req.params;
 
-    // Delete
-    // const user = await User.findByIdAndDelete(id);
     // Deactivate
     const user = await User.findByIdAndUpdate(id, {status: false});
-
+    
     res.json(user);
 }
 
