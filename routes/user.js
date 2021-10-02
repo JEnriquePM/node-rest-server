@@ -5,7 +5,7 @@ const {
     validateFields, 
     validateJWT, 
     isAdminRole, 
-    hasRole} = require('../middlewares');
+    hasRole} = require('../MIDDLEWARES');
 
 const { existsEmail, existsUserId, isValidRole } = require('../helpers/db-validators');
 
