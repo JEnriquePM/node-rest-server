@@ -13,7 +13,7 @@ const validateJWT = async(req = request, res = response, next) => {
 
     try {
         const {uid} = jwt.verify(token, process.env.SECRETORPRIVATEKEY);
-        
+
         // Read user from uid
         const user = await User.findById(uid);
 
@@ -39,9 +39,6 @@ const validateJWT = async(req = request, res = response, next) => {
             msg: 'Not valid token'
         });
     }
-
-    console.log(token);
-    next();
 }
 
 module.exports = {

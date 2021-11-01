@@ -30,14 +30,9 @@
         function handleCredentialResponse(response) {
             // Google Token : ID_TOKEN
             // console.log('id_token',response.credential);
-            let url = (window.location.hostname.includes('localhost'))
-                ? 'http://localhost:8080/api/auth/google'
-                : 'https://rest-server-node-bp.herokuapp.com/api/auth/google'
-
-            const body = {id_token: response.credential};
-
-            fetch(url, {
-                method: 'POST',
+            const body = { id_token: response.credential }
+            fetch('http://localhost:8080/api/auth/google', {
+                mmethod: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -52,14 +47,16 @@
         }
 
         const button = document.getElementById('google_signout');
-        button.onclick = () => {
-            console.log(google.accounts.id);
-            google.accounts.id.disableAutoSelect();
-            google.accounts.id.revoke(localStorage.getItem('email'), done => {
-                localStorage.clear();
-                location.reload();
-            });
-        }
+        button.onclick = async() => {
+
+        console.log(google.accounts.id)
+        google.accounts.id.disableAutoSelect()
+        google.accounts.id.revoke(localStorage.getItem('email'), done => {
+            console.log('consent revoked');
+            localStorage.clear()
+            location.reload()
+        });
+    }
       </script>
 </body>
 </html>
